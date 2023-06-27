@@ -14,13 +14,15 @@ Install the dependencies:
 
 Run the Flask server:
 
-    FLASK_ENV=development FLASK_APP=app.py flask run
+    set FLASK_ENV=development 
+    set FLASK_APP=app.py 
+    flask run
 
 
 From another tab, send the image file in a request:
+    From the image directory
 
-    curl -X POST -F file=@cat_pic.jpeg http://localhost:5000/predict
-
+    curl -X POST -F file=@cat1.jpg http://localhost:5000/predict
 
 ## License
 

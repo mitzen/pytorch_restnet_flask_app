@@ -6,6 +6,8 @@ import torchvision.transforms as transforms
 from PIL import Image
 from flask import Flask, jsonify, request
 
+# This model provides a REST API and expose the model by loading it
+# https://pytorch.org/tutorials/intermediate/flask_rest_api_tutorial.html
 
 app = Flask(__name__)
 imagenet_class_index = json.load(open('imagenet_class_index.json'))
