@@ -4,13 +4,11 @@ This repo contains a sample code to show how to create a Flask API server by dep
 
 If you'd like to learn how to deploy to Heroku, then check [this repo](https://github.com/avinassh/pytorch-flask-api-heroku).
 
-
 ## How to 
 
 Install the dependencies:
 
     pip install -r requirements.txt
-
 
 Run the Flask server:
 
@@ -20,6 +18,7 @@ Run the Flask server:
 
 
 From another tab, send the image file in a request:
+
     From the image directory
 
     curl -X POST -F file=@cat1.jpg http://localhost:5000/predict
