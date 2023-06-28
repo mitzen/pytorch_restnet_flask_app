@@ -14,7 +14,12 @@ imagenet_class_index = json.load(open('imagenet_class_index.json'))
 model = models.densenet121()
 model.eval()
 
-dummy_input = torch.autograd.Variable(torch.randn(1, 3, 32, 32))
+print(dir(model))
+
+### SIZE IMAGE ####
+## torch.Size([1, 3, 224, 224]) from the transfomed image in the app
+
+expected_input = torch.autograd.Variable(torch.randn(1, 3, 224, 224))
 # input_names = [ "data" ]
 input_names = ["input"]
 output_names = [ "output" ]
@@ -22,7 +27,7 @@ output_names = [ "output" ]
 # just like this is possbile ## 
 #torch.onnx.export(model, dummy_input, 'resnet110.onnx', verbose=True)
 
-torch.onnx.export(model, dummy_input, 'resnet110.onnx', verbose=True, input_names=input_names, output_names=output_names)
+torch.onnx.export(model, expected_input, 'resnet110.onnx', verbose=True, input_names=input_names, output_names=output_names)
 
 ## Check the model 
 
@@ -62,6 +67,12 @@ onnx.checker.check_model(onnx_model)
 # # Print a human readable representation of the graph
 # print(onnx.helper.printable_graph(model.graph))
 
+# examples 
+# alexnet
+# https://pytorch.org/docs/stable/onnx.html 
+
+# superresolution
+# https://pytorch.org/tutorials/advanced/super_resolution_with_onnxruntime.html
 
 import onnxruntime
 
@@ -71,8 +82,11 @@ ort_session = onnxruntime.InferenceSession("resnet110.onnx")
 def to_numpy(tensor):
     return tensor.detach().cpu().numpy() if tensor.requires_grad else tensor.cpu().numpy()
 
-batch_size = 1    # just a random number
-x = torch.randn(batch_size, 3, 32, 32)
+batch_size = 1    # setting batch number to 1
+# setting the image input size to 3, 244, 244
+
+x = torch.randn(batch_size, 3, 224, 224)
 
 ort_inputs = {ort_session.get_inputs()[0].name: to_numpy(x)}
 ort_outs = ort_session.run(None, ort_inputs)
+    
