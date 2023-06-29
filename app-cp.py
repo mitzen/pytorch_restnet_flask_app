@@ -1,6 +1,5 @@
 import io
 import json
-
 from torchvision import models
 import torchvision.transforms as transforms
 from PIL import Image

@@ -1,6 +1,5 @@
 import io
 import json
-
 from torchvision import models
 import torchvision.transforms as transforms
 from PIL import Image
@@ -17,12 +16,12 @@ model.eval()
 print(dir(model))
 
 ### SIZE IMAGE ####
-## torch.Size([1, 3, 224, 224]) from the transfomed image in the app
-
+## expected_input = torch.Size([1, 3, 224, 224]) from the transfomed image in the app
+## no a dummy but actual value that you will be passing in when you do your model.forward(expected_input)
 expected_input = torch.autograd.Variable(torch.randn(1, 3, 224, 224))
 # input_names = [ "data" ]
 input_names = ["input"]
-output_names = [ "output" ]
+output_names = ["output"]
 
 # just like this is possbile ## 
 #torch.onnx.export(model, dummy_input, 'resnet110.onnx', verbose=True)
@@ -89,4 +88,7 @@ x = torch.randn(batch_size, 3, 224, 224)
 
 ort_inputs = {ort_session.get_inputs()[0].name: to_numpy(x)}
 ort_outs = ort_session.run(None, ort_inputs)
+
+## Test on python 
+# outputs = ort_session.run(None, {"input": np.random.randn(1, 3, 224, 224).astype(np.float32)},)
     
