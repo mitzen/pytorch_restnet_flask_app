@@ -1,14 +1,10 @@
 on:
   workflow_call:
-    inputs:
-      projectPath:
-        required: true
-        type: string
-        default: '**.csproj'
-
-      dotnet-version:
-        type: string
-        default: "6.0.x"
+    # inputs:
+    #   projectPath:
+    #     required: true
+    #     type: string
+    #     default: '**.csproj'
 
 jobs:
 

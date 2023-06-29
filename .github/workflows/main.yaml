@@ -1,0 +1,22 @@
+name: dotnet package
+
+on: [push]
+
+jobs:
+
+  build-project:
+    uses: mitzen/pytorch_restnet_flask_app/.github/workflows/build.yaml@main
+    with:
+      projectPath: dotnet-gaction.csproj
+
+  # build-image:
+  #   uses: mitzen/pytorch_restnet_flask_app/.github/workflows/buildimage.yaml@main
+  #   needs: build-project
+
+  #   with:
+  #     artifact: build-artifact
+  #     repository: kepung
+  #     tags: "dotnetaction"
+  #   secrets:
+  #     docker_username: ${{ secrets.DOCKERUSER}} 
+  #     docker_token: ${{ secrets.DOCKERUSER}}
