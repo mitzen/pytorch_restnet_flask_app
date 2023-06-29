@@ -6,8 +6,8 @@ jobs:
 
   build-project:
     uses: mitzen/pytorch_restnet_flask_app/.github/workflows/build.yaml@master
-    with:
-      projectPath: dotnet-gaction.csproj
+    # with:
+    #   projectPath: dotnet-gaction.csproj
 
   # build-image:
   #   uses: mitzen/pytorch_restnet_flask_app/.github/workflows/buildimage.yaml@main
