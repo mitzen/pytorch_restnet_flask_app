@@ -5,7 +5,7 @@ on: [push]
 jobs:
 
   build-project:
-    uses: mitzen/pytorch_restnet_flask_app/.github/workflows/build.yaml@main
+    uses: mitzen/pytorch_restnet_flask_app/.github/workflows/build.yaml@master
     with:
       projectPath: dotnet-gaction.csproj
 
