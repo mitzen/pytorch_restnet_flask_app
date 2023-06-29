@@ -1,10 +1,10 @@
 on:
   workflow_call:
-    # inputs:
-    #   projectPath:
-    #     required: true
-    #     type: string
-    #     default: '**.csproj'
+    inputs:
+      projectPath:
+        required: false
+        type: string
+        default: '**.csproj'
 
 jobs:
 
