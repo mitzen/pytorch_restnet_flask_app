@@ -17,4 +17,6 @@ jobs:
        with:
           python-version: '3.10' 
      
+     - run: pip install requirements.txt
+     
      - run: python export-resnet50.py
