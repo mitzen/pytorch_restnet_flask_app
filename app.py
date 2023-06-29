@@ -30,16 +30,6 @@ preprocess = T.Compose([
 print("loading back the model via onnx runtime.")
 session_fp32 = onnxruntime.InferenceSession("resnet50.onnx", providers=['CPUExecutionProvider'])
 
-# def transform_image(image_bytes):
-#     my_transforms = transforms.Compose([transforms.Resize(256),
-#                                         transforms.CenterCrop(224),
-#                                         transforms.ToTensor(),
-#                                         transforms.Normalize(
-#                                             [0.485, 0.456, 0.406],
-#                                             [0.229, 0.224, 0.225])])
-#     image = Image.open(io.BytesIO(image_bytes))
-#     return my_transforms(image).unsqueeze(0)
-
 def softmax(x):
     """Compute softmax values for each sets of scores in x."""
     e_x = np.exp(x - np.max(x))
@@ -47,7 +37,7 @@ def softmax(x):
 
 latency = []
 
-def run_sample(session, categories, inputs):
+def exec_prediction_task(session, categories, inputs):
     start = time.time()
     input_arr = inputs.cpu().detach().numpy()
     ort_outputs = session.run([], {'input':input_arr})[0]
@@ -74,7 +64,7 @@ def transform_image(image_bytes):
 
 def get_prediction(image_bytes):
    input_batch = transform_image(image_bytes)
-   return run_sample(session_fp32, categories, input_batch)
+   return exec_prediction_task(session_fp32, categories, input_batch)
    
 @app.route('/predict', methods=['POST'])
 def predict():
