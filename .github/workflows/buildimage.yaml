@@ -1,12 +1,6 @@
 on:
   workflow_call:
-    # secrets:
-    #   docker_username:
-    #     required: true
-      
-    #   docker_token:
-    #     required: true
-
+  
     inputs:
       artifact:
         required: true
@@ -17,6 +11,10 @@ on:
         type: string
       
       tags:
+        required: true
+        type: string
+
+      artifactname:
         required: true
         type: string
   
@@ -37,6 +35,14 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ vars.DOCKERHUB_TOKEN }}
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifactname }}
+          
+      - name: Display structure of downloaded files
+        run: ls -R
+
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
