@@ -17,9 +17,9 @@ jobs:
        with:
           python-version: '3.10' 
      
-     - run: pip install -r requirements.txt
+     - run: pip install -r onnx-model/requirements.txt
 
-     - run: python export-resnet50.py
+     - run: python onnx-model/export-resnet50.py
 
      - uses: actions/upload-artifact@v3
        with:
