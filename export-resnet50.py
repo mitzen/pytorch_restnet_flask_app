@@ -1,9 +1,6 @@
 from torchvision import models
 import torch.onnx
 
-#https://github.com/pytorch/vision/blob/main/torchvision/models/densenet.py
-
-imagenet_class_index = json.load(open('imagenet_class_index.json'))
 # load a model 
 model = models.resnet50(pretrained=True)
 model.eval()
