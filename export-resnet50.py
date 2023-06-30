@@ -1,9 +1,4 @@
-import io
-import json
 from torchvision import models
-import torchvision.transforms as transforms
-from PIL import Image
-from flask import Flask, jsonify, request
 import torch.onnx
 
 #https://github.com/pytorch/vision/blob/main/torchvision/models/densenet.py
