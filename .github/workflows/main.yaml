@@ -17,7 +17,7 @@ jobs:
       artifact: build-artifact
       repository: kepung
       tags: "resnet50-onnx"
-      artifactname: resnet50.onnx
+      artifactname: resnet50-onnx
     # secrets:
     #   docker_username: ${{ secrets.DOCKERUSER}} 
     #   docker_token: ${{ secrets.DOCKERUSER}}
