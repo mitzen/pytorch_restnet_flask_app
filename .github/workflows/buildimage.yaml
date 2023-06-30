@@ -39,9 +39,6 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.artifactname }}
-          
-      - name: Display structure of downloaded files
-        run: ls -R
 
       -
         name: Set up Docker Buildx
